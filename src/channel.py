@@ -13,8 +13,9 @@ class Channel:
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         api_key: str = os.getenv('YT_API_KEY')
-        print ('YT_API_KEY')
         youtube = build('youtube', 'v3', developerKey=api_key)
         channel = youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
-        return (json.dumps(channel))
+        print(json.dumps(channel))
+
+
 
