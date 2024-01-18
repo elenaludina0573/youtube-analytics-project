@@ -2,7 +2,7 @@ from src.channel import Channel
 
 
 if __name__ == ('__main__'):
-    moscowpython: Channel = Channel('AIzaSyAEH4L0IqDJhVlXnCPI_peOJaMdx1SEKAk')
+    moscowpython = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
     moscowpython.print_info()
 
     """
@@ -17,7 +17,7 @@ if __name__ == ('__main__'):
     {
       "kind": "youtube#channel",
       "etag": "cPh7A8SKcZxxs_UPCiBaXP1wNDk",
-      "id": "UC-OVMPlMA3-YCIeg4z5z23A",
+      "id": "UC-OVMPlMA3-YCIeg4z5z23A",clear
       "snippet": {
         "title": "MoscowPython",
         "description": "Видеозаписи со встреч питонистов и джангистов в Москве и не только. :)\nПрисоединяйтесь: https://www.facebook.com/groups/MoscowDjango! :)",
