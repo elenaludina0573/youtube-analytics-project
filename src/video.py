@@ -1,11 +1,13 @@
 import os
+from dotenv import load_dotenv
 from googleapiclient.discovery import build
 
 
 class Video:
     """Класс для ютуб-канала"""
+    load_dotenv()
     api_key = os.getenv('YT_API_KEY')
-    youtube = build('yuotube', 'v3', developer=api_key)
+    youtube = build('yuotube', 'v3', developerKey=api_key)
 
     def __init__(self, video_id: str) -> None:
         """ Инициализация реальными данными следующих атрибутов экземпляра класса."""
