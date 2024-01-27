@@ -7,7 +7,7 @@ class Video:
     """Класс для ютуб-канала"""
     load_dotenv()
     api_key = os.getenv('YT_API_KEY')
-    youtube = build('yuotube', 'v3', developerKey=api_key)
+    youtube = build('youtube', 'v3', developerKey=api_key)
 
     def __init__(self, video_id: str) -> None:
         """ Инициализация реальными данными следующих атрибутов экземпляра класса."""
@@ -19,8 +19,15 @@ class Video:
         self.view_count: int = self.video_response["items"][0]["statistics"]["viewCount"]
         self.like_count: int = self.video_response["items"][0]["statistics"]["likeCount"]
 
+    def __str__(self):
+        return f"{self.video_title}"
 
+    
 class PLVideo(Video):
     def __init__(self, video_id, playlist_id):
         super().__init__(video_id)
         self.playlist_id = playlist_id
+
+    def __str__(self):
+        return f"{self.video_title}"
+
