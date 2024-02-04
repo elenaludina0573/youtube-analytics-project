@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from src.channel import Channel
 from googleapiclient.discovery import build
 
 
@@ -12,12 +13,22 @@ class Video:
     def __init__(self, video_id: str) -> None:
         """ Инициализация реальными данными следующих атрибутов экземпляра класса."""
         self.video_id = video_id
-        self.video_response = self.youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
-                                                         id=self.video_id).execute()
-        self.video_title: str = self.video_response["items"][0]["snippet"]["title"]
-        self.video_url: str = f"https://youtu.be/{self.video_id}"
-        self.view_count: int = self.video_response["items"][0]["statistics"]["viewCount"]
-        self.like_count: int = self.video_response["items"][0]["statistics"]["likeCount"]
+        youtube = Channel.get_service()
+
+        video = youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
+                                      id=video_id
+                                      ).execute()
+        try:
+            self.video_url: str = f"https://youtu.be/{self.video_id}"
+            self.title = video['items'][0]['snippet']['title']
+            self.view_count = video['items'][0]['statistics']['viewCount']
+            self.like_count = video['items'][0]['statistics']['likeCount']
+        except IndexError:
+            self.title = None
+            self.video_url = None
+            self.view_count = None
+            self.like_count = None
+
 
     def __str__(self):
         return f"{self.video_title}"
